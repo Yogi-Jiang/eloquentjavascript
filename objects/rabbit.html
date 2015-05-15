@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function speak(line) {
+            console.log("The " + this.type + " rabbit says '" + line + "'");
+        }
+        var whiteRabbit = {type: "white", speak: speak};
+        //speak.apply(whiteRabbit, ["Burp!", "Yahoo!"]);
+       // speak.call(whiteRabbit, "Burp!");
+       // speak.call({type: "old"}, "Yahoo!");
+       //speak.bind(whiteRabbit,"Yahoo!");
+        var protoRabbit = {
+            speak: function(line) {
+                console.log("The " + this.type + " rabbit says '" + line + "'");
+            }
+        }
+        var killerRabbit = Object.create(protoRabbit);
+        killerRabbit.type = "killer";
+        killerRabbit.speak("Yahoo!");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        for (var number = 1; number <= 100; number++) {
+            if ((number % 5 == 0) && (number % 3 == 0)) {
+                console.log("FizzBuzz ");
+                continue;
+            } else if ((number % 5 == 0) && (number % 3 != 0)) {
+                console.log("Buzz ");
+                continue;
+            } else if ((number % 3 == 0) && (number % 5 != 0)) {
+                console.log("Fizz ");
+                continue;
+            }
+            console.log(number+" ");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var box = {
+            locked: true,
+            unlock: function() {this.locked = false;},
+            lock: function() {this.locked = true;},
+            _content: [],
+            get content() {
+                if (this.locked) {
+                    throw new Error("Locked!");
+                };
+                return this._content;
+            }
+        }
+
+        function withBoxUnlocked(f) {
+            box.locked = false;
+            try {
+                f();
+            } finally {
+                box.locked = true;
+            }
+        }
+
+        withBoxUnlocked(function() {
+            box.content.push("gold piece");
+        });
+
+        try {
+            withBoxUnlocked(function() {
+                throw new Error("Pirates on the horizon! Abort!");
+            })
+        } catch (e) {
+            console.log("Error raised: " + e);
+        }
+
+        console.log(box.locked);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

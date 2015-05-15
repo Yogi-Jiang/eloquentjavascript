@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var reg1 = /ca[rt]/;
+        var reg2 = /pr?op/;
+        var reg3 = /ferret|ferry|ferrari/;/ferr(et|y|ari)/;
+        var reg4 = /ious\b/;
+        var reg5 = /\s[.,;:]/;
+        var reg6 = /\w{7,}/;
+        var reg7 = /\b[a-df-z]\b/i;
+        var text = "'I'm the cook,' he said, 'it's my job.'";
+        console.log(text.replace(/(^|\W)'|'(\W|$)/g,'$1"$2'));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

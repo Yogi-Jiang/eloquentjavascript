@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ancestry.js"></script>
+    <script>
+        var ancestry = JSON.parse(ANCESTRY_FILE);
+        function filter(array, test) {
+            var passed = [];
+            for (var i = 0; i < array.length; i++) {
+                if (test(array[i])) {
+                    passed.push(array[i]);
+                }
+            }
+            return passed;
+        }
+       // console.log(filter(ancestry, function(person) {
+        //    return person.born > 1900 && person.born < 1925;
+        //}));
+      //  console.log(ancestry.filter(function(person) {
+       //     return person.father == "Carel Haverbeke";
+       // }));
+        function map(array, transform) {
+            var mapped =[];
+            for (var i = 0; i < array.length; i++) {
+                mapped.push(transform(array[i]));
+            }
+            return mapped;
+        }
+        var overNinety = ancestry.filter(function(person) {
+            return person.died - person.born > 90;
+        })
+       // console.log(map(overNinety, function(person) {
+       //     return person.name;
+       // }));
+
+        function reduce(array, combine, start) {
+            var current = start;
+            for (var i = 0; i < array.length; i++) {
+                current = combine(current, array[i]);
+            }
+            return current;
+        }
+        //console.log(reduce([1, 2, 3, 4], function(a, b) {
+       //     return a + b;
+       // },0));
+        var a = [11, 2, 3, 4];
+       // console.log(a.reduce(function(b, c) {
+       //     return b + c;
+      //  }));
+       // console.log(ancestry.reduce(function(min, cur) {
+       //     if (cur.born < min.born) {
+       //         return cur;
+       //     } else {
+       //         return min;
+       //     }
+      //  }));
+      function male(person) {
+          return person.sex == "m";
+      }
+      function female(person) {
+          return person.sex == "f";
+      }
+      function age(person) {
+          return person.died - person.born;
+      }
+      function average(array) {
+          return array.reduce(function(a, b) {
+              return a + b;
+          }) / array.length;
+      }
+     // console.log(average(ancestry.filter(male).map(age)));
+     //   console.log(average(ancestry.filter(female).map(age)));
+        var byName ={};
+        ancestry.forEach(function(person) {
+            byName[person.name] = person;
+        })
+        //console.log(byName["Philibert Haverbeke"]);
+        function reduceAncestors(person, f, defaultValue) {
+            function valueFor(person) {
+                if (person == null) {
+                    return defaultValue;
+                } else {
+                    return f(person, valueFor(byName[person.father]), valueFor(byName[person.mother]));
+                }
+            }
+            return valueFor(person);
+        }
+        function sharedDNA(person, fromFather, fromMother) {
+            if (person.name == "Pauwels van Haverbeke") {
+                return 1;
+            } else {
+                return (fromFather + fromMother) / 2;
+            }
+        }
+        var ph = byName["Philibert Haverbeke"];
+       // console.log(reduceAncestors(ph, sharedDNA, 0) / 4);
+       function countAncestors(person, test) {
+           function combine(person, fromFather, fromMother) {
+               var isThisOneCounts = test(person);
+               return fromFather + fromMother + (isThisOneCounts ? 1 : 0);
+           }
+           return reduceAncestors(person, combine, 0);
+       }
+       function longLivingPercentage(person) {
+           var all = countAncestors(person, function(person) {
+               return true;
+           });
+           var longLiving = countAncestors(person, function(person) {
+               return person.died - person.born >= 70;
+           })
+           return longLiving / all;
+       }
+     //  console.log(longLivingPercentage(byName["Emile Haverbeke"]));
+       function groupBy(array, groupOf) {
+           var groups = {};
+           array.forEach(function(person) {
+               var groupName = groupOf(person);
+               if (groupName in groups) {
+                   groups[groupName].push(person);
+               } else {
+                   groups[groupName] = [person];
+               }
+           })
+           return groups;
+       }
+      function groupOf(person) {
+          return Math.ceil(person.died / 100);
+      }
+      var byCentury = groupBy(ancestry, groupOf);
+      for (var century in byCentury) {
+          var ages = byCentury[century].map(function(person) {
+              return person.died -person.born;
+          });
+         // console.log(century + ": " + average(ages));
+      }
+
+        function every(array, test){
+            array.forEach(function(element) {
+                if (!test(element)) {
+                    return false;
+                }
+            });
+            return true;
+        }
+        var testArray = [1, 2, 3, 4];
+        //console.log(every(testArray, function(element) {
+       //     return element > 0;
+        //}));
+
+        function some(array, test){
+            array.forEach(function(element) {
+                if (test(element)) {
+                    return true;
+                }
+            });
+            return false;
+        }
+
+        console.log(some(testArray, function(element) {
+            return element > 4;
+        }));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

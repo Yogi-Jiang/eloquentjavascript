@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //console.log("papa".replace(/p/g,"m"));
+        //console.log("Borobudur".replace(/[ou]/,"a"));
+        //console.log("Borobudur".replace(/[ou]/g,"a"));
+          function stripComments(code) {
+              return code.replace(/\/\/.*|\/\*[^]*?\*\//g, "");
+          }
+        //console.log(stripComments("1 /* a */+/* b */ 1"));
+       /*var name = "harry";
+        var text= "Harry is suspicious character.";
+        var regexp = new RegExp("\\b(" + name + ")\\b", "gi");
+        console.log(text.replace(regexp, "_$1_")); */
+        var name = "dea+hl[]rd";
+        var text = "This dea+hl[]rd guy is super annoying.";
+        var escaped = name.replace(/[^\w\s]/g, "\\$&");
+        var regexp = new RegExp("\\b(" + escaped + ")\\b", "gi");
+       // console.log(text.replace(regexp, "_$1_"));
+        console.log("  word".search(/\S/));
+        console.log("    ".search(/\S/));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

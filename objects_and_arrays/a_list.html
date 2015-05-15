@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function arrayToList(array) {
+            var list = {};
+            for( var i = array.length - 1; i>= 0; i--) {
+                if (i == array.length - 1) {
+                    list = {
+                        value: array[array.length - 1],
+                        rest: null
+                    }
+                } else {
+                    list = {
+                        value: array[i],
+                        rest: list
+                    }
+                }
+            }
+            return list;
+        }
+
+       function listToArray(list) {
+           var array = [];
+           var newList = list;
+           var i = 0;
+           do {
+               array[i] = newList.value;
+               newList = newList.rest;
+               i++;
+           } while (newList != null);
+           return array;
+       }
+
+       function prepend(value, list) {
+           var newList = {
+               value: value,
+               rest: list
+           };
+           return newList;
+       }
+
+     /* function nth(list, number) {
+          var newList = list;
+          for (var start = 0; start <= number; start++)
+          if (start == number) {
+              return newList.value;
+          } else {
+              if (newList.rest == null) {
+                  return undefined;
+              }
+              newList = newList.rest;
+          }
+      } */
+        function nth(list, number) {
+            var tmpList = list;
+            function find(newList,start) {
+                if (start == number) {
+                    return newList.value;
+                } else {
+                    if (newList.rest == null) {
+                        return undefined;
+                    }
+                   return find(newList.rest, start + 1);
+                }
+            }
+            return find(tmpList, 0);
+        }
+
+       console.log(nth(arrayToList([10, 20, 30]), 0));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

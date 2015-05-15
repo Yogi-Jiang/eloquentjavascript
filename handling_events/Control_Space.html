@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>Press Ctrl-Space to continue.</p>
+    <script>
+        addEventListener("keydown", function(event) {
+            if (event.keyCode == 32 && event.altKey) {
+                console.log("Continuing!");
+            };
+        });
+    </script>
+</body>
+</html>

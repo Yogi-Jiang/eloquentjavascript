@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button>Click me any way you want.</button>
+    <script>
+        var button = document.querySelector("button");
+        button.addEventListener("mousedown", function(event) {
+            if (event.which == 1) {
+                console.log("Left button");
+            } else if (event.which == 2) {
+                console.log("Middle button");
+            } else if (event.which == 3) {
+                console.log("Right button");
+            }
+        })
+    </script>
+</body>
+</html>

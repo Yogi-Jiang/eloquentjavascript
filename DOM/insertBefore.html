@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+   <p>One</p>
+   <p>Two</p>
+   <p>Three</p>
+   <script>
+       var paragraphs = document.getElementsByTagName("p");
+       document.body.replaceChild(paragraphs[2],paragraphs[0]);
+      // document.body.removeChild(paragraphs[0]);
+   </script>
+</body>
+</html>

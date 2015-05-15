@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ancestry.js"></script>
+    <script>
+        function logEach(array) {
+            for (var i = 0; i < array.length; i++) {
+                console.log(array[i]);
+            }
+        }
+
+        function forEach(array, action) {
+            for (var i = 0; i < array.length; i++) {
+                action(array[i]);
+            }
+        }
+
+        var a = [1, 2, 3, 4];
+        //logEach(a);
+       // forEach(a, function(number) {
+       //     console.log(number * 2);
+       // });
+        var sum = 0;
+       forEach(a, function(number) {
+           sum += number;
+       })
+       //console.log(sum);
+       function gatherCorrelations(journal) {
+           var phis = {};
+           journal.forEach(function(entry) {
+               entry.events.forEach(function(event) {
+                   if(!(event in phis)) {
+                       phis[event] = phi(tableFor(event, journal));
+                   }
+               });
+           });
+           return phis;
+       }
+
+       var obj = {
+           name: "X",
+           born: 1980
+       };
+
+      // console.log(obj);
+       var string = JSON.stringify(obj);
+        //console.log(string);
+        console.log(JSON.parse(string).born);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
