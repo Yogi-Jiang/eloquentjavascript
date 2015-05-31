@@ -266,7 +266,24 @@ function CanvasDisplay(parent, level) {
     this.level = level;
     this.animationTime = 0;
     this.flipPlayer = false;
+
+    this.viewport = {
+        left: 0,
+        top: 0,
+        width: this.canvas.width / scale,
+        height: this.canvas.height / scale
+    };
+
+    this.drawFrame(0);
 }
+
+CanvasDisplay.prototype.clear = function() {
+    this.canvas.parentNode.removeChild(this.canvas);
+}
+
+
+
+
 
 var arrowCodes = {
     37: "left",
