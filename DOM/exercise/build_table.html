@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 3px 8px;
+        }
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function buildTable(array) {
+        var table = document.createElement("table");
+        var theader = document.createElement("tr");
+        var names = Object.keys(array[0]);
+        /* for(var i = 0; i < names.length; i++) {
+            var text = document.createTextNode(names[i]);
+            var td = document.createElement("td");
+            theader.appendChild(td);
+        } */
+         Object.keys(array[0]).forEach(function(name) {
+         var text = document.createTextNode(name);
+         var th = document.createElement("th");
+         th.appendChild(text);
+         theader.appendChild(th);
+         });
+        table.appendChild(theader);
+        array.forEach(function(obj) {
+            var row = document.createElement("tr");
+            Object.keys(obj).forEach(function(name) {
+                var value = obj[name];
+                var text = document.createTextNode(value);
+                var td = document.createElement("td");
+                if (typeof value == "number") {
+                    td.style.textAlign = "right";
+                }
+                td.appendChild(text);
+                row.appendChild(td);
+            });
+            table.appendChild(row);
+        });
+        return table;
+    }
+    var MOUNTAINS = [
+        {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+        {name: "Everest", height: 8848, country: "Nepal"},
+        {name: "Mount Fuji", height: 3776, country: "Japan"},
+        {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+        {name: "Vaalserberg", height: 323, country: "Netherlands"},
+        {name: "Denali", height: 6168, country: "United States"},
+        {name: "Popocatepetl", height: 5465, country: "Mexico"}
+    ];
+
+    document.body.appendChild(buildTable(MOUNTAINS));
+</script>
+</body>
+</html>

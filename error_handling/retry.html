@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function MultiplicatorUnitFailure(message) {
+            this.message = message;
+        }
+        MultiplicatorUnitFailure.prototype = Object.create(Error.prototype);
+        function primitiveMultiply(a, b) {
+            var n = Math.floor(Math.random() * 2);
+            if (n == 0) {
+                console.log(a * b);
+            } else if (n == 1) {
+                throw  new MultiplicatorUnitFailure("Exception occurs!");
+            }
+        }
+        for(;;) {
+            try {
+                primitiveMultiply(1, 2);
+                break;
+            } catch (e) {
+                if (e instanceof MultiplicatorUnitFailure) {
+                    console.log("Unfortunately it doesn't work.Try agin.");
+                } else {
+                    throw e;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

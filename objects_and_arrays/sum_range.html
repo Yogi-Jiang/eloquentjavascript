@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function range(start, end, step) {
+            var array = [];
+            if (step == undefined) {
+                for (var i = 0; i <= end - start; i++) {
+                    array[i] = start + i;
+                }
+            }
+            if (step == 0) {
+                return "步阶不能为0！";
+            } else if (step != 0) {
+                for (var i = 0; i <= (end - start) / step; i++) {
+                    array[i] = start + i * step;
+                }
+            }
+            return array;
+        }
+        function sum(array) {
+            var total = 0;
+            for(var i = 0; i < array.length; i++) {
+                total += array[i];
+            }
+            return total;
+        }
+        console.log(range(2, 15, 3));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

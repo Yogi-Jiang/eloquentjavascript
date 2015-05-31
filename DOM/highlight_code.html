@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>The following is the identity function:</p>
+    <pre data-language = "javascript">
+        function id(x) {
+            return x;
+        }
+    </pre>
+    <script>
+        function highlightCode(node, keywords) {
+            var text = node.textContent;
+            node.textContent = "";
+
+            var match, pos = 0;
+            while (match = keywords.exec(text)) {
+                var before = text.slice(pos, match.index);
+                node.appendChild(document.createTextNode(before));
+                var strong = document.createElement("strong");
+                strong.appendChild(document.createTextNode(match[0]));
+                node.appendChild(strong);
+                pos = keywords.lastIndex;
+            }
+            var after = text.slice(pos);
+            node.appendChild(document.createTextNode(after));
+        }
+
+        var languages = {
+            javascript: /\b(function|return|var)\b/g
+        }
+
+        function highlightAllCode() {
+            var pres = document.getElementsByTagName("pre");
+            for( var i = 0; i < pres.length; i++) {
+                var pre = pres[i];
+                var lang = pre.getAttribute("data-language");
+                if (languages.hasOwnProperty(lang)) {
+                    highlightCode(pre, languages[lang]);
+                }
+            }
+        }
+
+        highlightAllCode();
+    </script>
+</body>
+</html>

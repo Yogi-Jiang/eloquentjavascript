@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        function flipHorizontally(context, around) {
+            context.translate(around, 0);
+            context.scale(-1, 1);
+            context.translate(-around, 0);
+        }
+        var cx = document.querySelector("canvas").getContext("2d");
+        var spriteW = 24;
+        var spriteH = 30;
+        var img = document.createElement("img");
+        img.src = "player.png";
+        img.addEventListener("load", function() {
+            var cycle = 0;
+            flipHorizontally(cx, 100 + spriteW / 2);
+            setInterval(function() {
+                cx.clearRect(100, 0, spriteW, spriteH);
+                //flipHorizontally(cx, 100 + spriteW / 2);
+                cx.drawImage(img, cycle * spriteW, 0, spriteW, spriteH, 100, 0, spriteW, spriteH);
+                cycle = (cycle + 1) % 8;
+            }, 120);
+
+        });
+        //
+       // cx.drawImage(img, 0, 0, spriteW, spriteH, 100, 0, spriteW, spriteH);
+
+    </script>
+</body>
+</html>

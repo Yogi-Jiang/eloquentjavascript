@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var cx = document.querySelector("canvas").getContext("2d");
+        cx.beginPath();
+       // cx.moveTo(10, 10);
+        //control = (90,10),dest = (90, 90) radius = 20;
+       // cx.arcTo(90, 10, 90, 90, 20);
+        cx.moveTo(10, 10);
+        //control = (90,10) dest = (90,90) radius = 80;
+        cx.arcTo(90, 10, 90, 90, 80);
+
+        cx.stroke();
+    </script>
+</body>
+</html>

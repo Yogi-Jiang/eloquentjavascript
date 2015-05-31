@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p style="text-align: center;margin: 300px;">
+        <img id="img1" src="img/cat.JPG" height="100" width="100" style="position: absolute;">
+        <img id="img2" src="img/cat.JPG" height="100" width="100" style="position: absolute;">
+    </p>
+    <script>
+        var angle = 0;
+        var lasttime = null;
+        var image1 = document.querySelector("#img1");
+        var image2 = document.querySelector("#img2");
+        function animate(time) {
+            if (lasttime != null) {
+                angle += (time - lasttime) * 0.001;
+            }
+            lasttime = time;
+            image1.style.top = (Math.sin(angle) * 80 + 400) + "px";
+            image1.style.left = (Math.cos(angle) * 200 + 400) + "px";
+            image2.style.top = (-Math.sin(angle) * 80 + 400) + "px";
+            image2.style.left = (-Math.cos(angle) * 200 + 400) + "px";
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    </script>
+</body>
+</html>

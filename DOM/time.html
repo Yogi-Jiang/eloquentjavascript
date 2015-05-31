@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p><span id="one"></span></p>
+    <p><span id="two"></span></p>
+    <script>
+        function time(name, action) {
+            var start = Date.now();
+            action();
+            console.log(name , " took " , Date.now() - start, "ms");
+        }
+
+        time("naive", function() {
+            var one = document.getElementById("one");
+            while (one.offsetWidth < 2000) {
+                one.appendChild(document.createTextNode("X"));
+            }
+            console.log("One's offsetWidth: " + one.offsetWidth);
+        });
+
+        time("clever", function() {
+           var two = document.getElementById("two");
+           two.appendChild(document.createTextNode("XXXXX"));
+           var total = Math.ceil(2000 / (two.offsetWidth / 5));
+           for (var i= 5; i < total; i++) {
+               two.appendChild(document.createTextNode("X"));
+           };
+            console.log("Two's offsetWidth: " + two.offsetWidth);
+        });
+    </script>
+</body>
+</html>

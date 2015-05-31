@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="wrapper">
+        <div data-tabname="one">Tab one</div>
+        <div data-tabname="two">Tab two</div>
+        <div data-tabname="three">Tab three</div>
+    </div>
+    <script>
+        function asTabs(node) {
+            var buttonArray = [];
+            var elementArray = [];
+
+            for (var i = 0; i < node.childNodes.length; i++) {
+                if (node.childNodes[i].nodeType == document.ELEMENT_NODE) {
+                    var button = document.createElement("button");
+                    button.textContent = node.childNodes[i].getAttribute("data-tabname");
+                    document.body.insertBefore(button, node);
+                    node.childNodes[i].style.display = "none";
+                    buttonArray.push(button);
+                    elementArray.push(node.childNodes[i]);
+                }
+            }
+
+            buttonArray[0].style.background = "pink";
+            elementArray[0].style.display = "block";
+
+            buttonArray.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    buttonArray.forEach(function(button) {
+                        button.style.background = "";
+                    });
+                    elementArray.forEach(function(element) {
+                        if (element.getAttribute("data-tabname") == button.textContent) {
+                            element.style.display = "block";
+                        } else {
+                            element.style.display = "none";
+                        };
+                    });
+                    button.style.background = "pink";
+
+                });
+            });
+        }
+        asTabs(document.querySelector(".wrapper"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p style="border: 3px solid red">
+        I'm boxed in.
+    </p>
+    <script>
+        var para = document.getElementsByTagName("p")[0];
+       // console.log("clientHeight: " + para.clientHeight);
+      //  console.log("offsetHeight: " + para.offsetHeight);
+        console.log("position: " + para.getBoundingClientRect());
+    </script>
+</body>
+</html>

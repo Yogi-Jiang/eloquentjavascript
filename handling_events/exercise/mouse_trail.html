@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 200px;
+            background: beige;
+        }
+        .dot {
+            height: 6px;
+            width: 6px;
+            border-radius: 2px;
+            background: teal;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var next = 0;
+    var dotArray = [];
+    for (var i = 0; i < 20; i++) {
+        var dot = document.createElement("div");
+        dot.className = "dot";
+        dot.style.top = (-1000) + "px";
+        dot.style.left = (-1000) + "px";
+        document.body.appendChild(dot);
+        dotArray.push(dot);
+    }
+
+    addEventListener("mousemove", function(event) {
+        dotArray[next].style.top = event.pageY + "px";
+        dotArray[next].style.left = event.pageX + "px";
+        next = (next + 1) % dotArray.length;
+    })
+</script>
+</body>
+</html>

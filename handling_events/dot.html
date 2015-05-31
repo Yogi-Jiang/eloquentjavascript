@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 200px;
+            background: beige;
+        }
+        .dot {
+            height: 8px;
+            width: 8px;
+            border-radius: 4px;
+            background: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        addEventListener("click", function(event) {
+            var dot = document.createElement("div");
+            dot.className = "dot";
+            dot.style.top = (event.pageY - 4) + "px";
+            dot.style.left = (event.pageX - 4) + "px";
+            document.body.appendChild(dot);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var cx = document.querySelector("canvas").getContext("2d");
+        var spriteW = 24;
+        var spriteH = 30;
+        var img = document.createElement("img");
+        img.src = "player.png";
+        img.addEventListener("load", function() {
+            var cycle = 0;
+            setInterval(function() {
+                cx.clearRect(0, 0, spriteW, spriteH);
+                cx.drawImage(img, cycle * spriteW, 0, spriteW, spriteH, 0 , 0, spriteW, spriteH);
+                cycle = (cycle + 1) % 8;
+            }, 120);
+        })
+    </script>
+</body>
+</html>

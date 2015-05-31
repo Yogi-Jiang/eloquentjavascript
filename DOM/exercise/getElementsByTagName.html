@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+     <p>One<em>one</em><em>three</em></p>
+     <p>Two<em>two</em></p>
+     <script>
+         function getElementsByTagName(node, tagName) {
+             var tagArray = [];
+             tagName = tagName.toUpperCase();
+
+             function explore(node) {
+                 for (var i = 0; i < node.childNodes.length; i++) {
+                     var child = node.childNodes[i];
+                     if (child.nodeType == document.ELEMENT_NODE) {
+                         if (child.tagName == tagName) {
+                             tagArray.push(child);
+                         }
+                         explore(child);
+                     }
+                 }
+             }
+
+             explore(node);
+             return tagArray;
+         }
+         console.log(getElementsByTagName(document.body, "em").length);
+     </script>
+</body>
+</html>

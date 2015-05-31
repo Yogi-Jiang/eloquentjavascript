@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>The <img height="100" width="100" src="img/cat.JPG" alt="cat"> in the
+       <img height="100" width="100" src="img/hat.JPG" alt="hat">.</p>
+    <p><button onclick="replaceImages();">Replace</button></p>
+    <script>
+//        function replaceImages() {
+//            var images = document.getElementsByTagName("img");
+//            for (var i = images.length - 1; i >= 0; i--) {
+//                var image = images[i];
+//                if (image.alt) {
+//                    var text = document.createTextNode(image.alt);
+//                    image.parentNode.replaceChild(text, image);
+//                }
+//            }
+//        }
+
+        function replaceImages() {
+            var images = document.getElementsByTagName("img");
+            var array = Array.prototype.slice.call(images,0);
+            for (var i = 0; i < array.length; i++) {
+                var image = array[i];
+                if (image.alt) {
+                    var text = document.createTextNode(image.alt);
+                    image.parentNode.replaceChild(text, image);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
