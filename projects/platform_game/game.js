@@ -310,6 +310,8 @@ DOMDisplay.prototype.scrollPlayerIntoView = function(){
     } else if (center.y > bottom -margin) {
         this.wrap.scrollTop = center.y + margin - height;
     };
+   // this.wrap.scrollTop = center.y - height / 2;
+   // this.wrap.scrollLeft = center.x - width / 2;
 };
 
 DOMDisplay.prototype.clear = function () {
@@ -367,7 +369,7 @@ function runLevel(level, Display, andThen) {
     var running = "yes";
     var arrows = trackKeys(arrowCodes);
     function animation(step) {
-        console.log(running);
+        console.log(step);
         if(running == "pausing") {
             running = "no";
             return false;

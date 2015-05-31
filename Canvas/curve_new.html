@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var cx = document.querySelector("canvas").getContext("2d");
+        cx.beginPath();
+        cx.moveTo(10, 90);
+        // control = (60, 10), dest = (90, 90)
+        cx.quadraticCurveTo(60, 10, 90, 90);
+        cx.lineTo(60, 10);
+        cx.closePath();
+        cx.stroke();
+    </script>
+</body>
+</html>
