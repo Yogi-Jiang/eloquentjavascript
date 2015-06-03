@@ -1,0 +1,13 @@
+
+.background {
+    background: rgb(60, 110, 188);
+    border-spacing: 0;
+}
+
+.wall {
+    background: white;
+}
+
+.lava {
+    background: rgb(234, 92, 2);
+}
