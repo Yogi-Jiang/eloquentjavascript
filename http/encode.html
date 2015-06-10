@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //console.log(encodeURIComponent("hello & goodbye"));
+       // console.log(decodeURIComponent("hello%20%26%20goodbye"));
+        var req = new XMLHttpRequest();
+        req.open("GET", "fruit.json", false);
+//        req.addEventListener("load", function() {
+//            console.log("Done:", req.status);
+//        });
+        req.send(null);
+        console.log(JSON.parse(req.responseText));
+        //console.log(req.responseText);
+       // console.log(req.status, req.statusText);
+       // console.log(req.getResponseHeader("content-length"));
+    </script>
+</body>
+</html>

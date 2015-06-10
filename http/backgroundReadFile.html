@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function backgroundReadFile(url, callback) {
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.addEventListener("load", function() {
+                if (req.status < 400) {
+                    callback(req.responseText);
+                };
+            });
+            req.send(null);
+        }
+
+        try {
+            backgroundReadFile("new.txt", function(text) {
+                if (text != "expected") {
+                    console.log(text);
+                    throw new Error("That was not expected.");
+                };
+            });
+        } catch(e) {
+            console.log("Hello from the catch block.");
+        }
+        console.log("111");
+    </script>
+</body>
+</html>
