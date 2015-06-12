@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>
+        <input type="text">
+        <span id="length">0</span>
+    </p>
+    <script>
+        var text = document.querySelector("input");
+        var output = document.querySelector("#length");
+        text.addEventListener("input", function() {
+            output.textContent = text.value.length;
+        })
+    </script>
+</body>
+</html>

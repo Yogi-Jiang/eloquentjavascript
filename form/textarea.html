@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <textarea></textarea>
+    <script>
+        var textarea = document.querySelector("textarea");
+        textarea.addEventListener("keydown", function(event) {
+            if (event.keyCode == 113) {
+                replaceSelection(textarea, "Khasekhemwy");
+                event.preventDefault();
+            };
+        });
+        function replaceSelection(field, word) {
+            var from = field.selectionStart;
+            var end = field.selectionEnd;
+            field.value = field.value.slice(0, from) + word + field.value.slice(end);
+            field.selectionStart = field.selectionEnd = from + word.length;
+        }
+    </script>
+</body>
+</html>
