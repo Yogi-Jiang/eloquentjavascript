@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function getURL(url, callback) {
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.addEventListener("load", function() {
+                if (req.status < 400) {
+                    callback(req.responseText);
+                } else {
+                    callback(null, new Error("Request failed: " + req.statusText));
+                };
+            });
+            req.addEventListener("error", function() {
+                callback(null, new Error("Network error"));
+            });
+            req.send(null);
+        }
+        getURL("new.txt", function(content, error) {
+            if (error != null) {
+                console.log("Failed to fetch new.txt " + error);
+            } else {
+                console.log("new.txt " + content);
+            };
+        });
+    </script>
+</body>
+</html>
